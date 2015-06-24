@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+             xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+             x:Class="TelerikListViewXF.SwipeAnItem">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <Label Text="Swipe an Item" HorizontalOptions="Center" FontSize="Medium"/>
+
+    <telerikDataControls:RadListView x:Name="listView" Grid.Row="1" IsItemSwipeEnabled="True" SwipeThreshold="10" BackgroundColor="White">
+
+      <telerikDataControls:RadListView.ItemTemplate>
+        <DataTemplate>
+          <telerikListView:ListViewTemplateCell>
+            <telerikListView:ListViewTemplateCell.View>
+              <StackLayout HorizontalOptions="Center">
+                <Label Text="{Binding Name}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                  <Label TextColor="Gray" Text="Amount: "/>
+                  <Label TextColor="Gray" Text="{Binding Value}"/>
+                </StackLayout>
+              </StackLayout>
+            </telerikListView:ListViewTemplateCell.View>
+          </telerikListView:ListViewTemplateCell>
+        </DataTemplate>
+      </telerikDataControls:RadListView.ItemTemplate>
+
+      <telerikDataControls:RadListView.ItemSwipeContentTemplate>
+        <DataTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="100"/>
+              <ColumnDefinition/>
+              <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Button Text="increase" TextColor="White" BackgroundColor="#FF9966" Clicked="IncreaseButtonClicked"/>
+            <Button Text="decrease" TextColor="White" BackgroundColor="#66CCFF" Clicked="DecreaseButtonClicked" Grid.Column="2"/>
+          </Grid>
+        </DataTemplate>
+      </telerikDataControls:RadListView.ItemSwipeContentTemplate>
+    </telerikDataControls:RadListView>
+  </Grid>
+</ContentPage>
